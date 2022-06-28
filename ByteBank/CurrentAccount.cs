@@ -7,11 +7,11 @@ namespace ByteBank
 {
     public class CurrentAccount
     {
-        public string name;
-        public string account;
-        public int agencyNumber;  
-        public string agencyName;
-        public double balance;
+        public Client Client { get; set; }
+        public string Account { get; set; }
+        public int AgencyNumber { get; set; }
+        public string AgencyName { get; set; }
+        private double balance;
 
         //Withdraw method, check valor and balance
         public bool Withdraw(double value)
@@ -55,6 +55,19 @@ namespace ByteBank
                 transferDestiny.balance += value;
                 return true; 
             }
+        }
+
+        public void SetBalance(double value)
+        {
+            if(value < 0){
+                return;
+            }
+            balance = value;
+        }
+
+        public double GetBalance()
+        {
+            return balance;
         }
     }
 }

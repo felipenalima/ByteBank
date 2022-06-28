@@ -5,25 +5,25 @@ using ByteBank;
 
 // Test for Client class
 Client client = new Client();
-client.name = "Felipe Lima";
-client.cpf = "1234567-40";
-client.occupation = "Embedded Developer";
+client.Name = "Felipe Lima";
+client.Cpf = "1234567-40";
+client.Occupation = "Embedded Developer";
 
-System.Console.WriteLine("Name: " + client.name);
-System.Console.WriteLine("CPF: " + client.cpf);
-System.Console.WriteLine("Occupation: " + client.occupation);
+System.Console.WriteLine("Name: " + client.Name);
+System.Console.WriteLine("CPF: " + client.Cpf);
+System.Console.WriteLine("Occupation: " + client.Occupation);
 
 
 // Test for CurrentAccount class
 
-// CurrentAccount account = new CurrentAccount();
+CurrentAccount account = new CurrentAccount();
 // CurrentAccount accountTwo = new CurrentAccount();
 
-// account.name = "Felipe Lima";
+account.Client = client;
+account.SetBalance(3254.5);
 // account.account = "1234x-X";
 // account.agencyName = "Central Agency";
 // account.agencyNumber = 23;
-// account.balance = 3254.5;
 
 // accountTwo.name = "Pamela Luz";
 // accountTwo.account = "32547-X";
@@ -31,11 +31,11 @@ System.Console.WriteLine("Occupation: " + client.occupation);
 // accountTwo.agencyNumber = 2;
 // accountTwo.balance = 5000.5;
 
-// Console.WriteLine("Name: " + account.name);
+Console.WriteLine("Name: " + account.Client.Name);
+Console.WriteLine("Balance: " + account.GetBalance());
 // Console.WriteLine("Account: " + account.account);
 // Console.WriteLine("Agency Name: " + account.agencyName);
 // Console.WriteLine("Agency Number: " + account.agencyNumber);
-// Console.WriteLine("Balance: " + account.balance);
 
 // Console.WriteLine("Balance before the transfer: " + account.balance);
 // account.Withdraw(2000);

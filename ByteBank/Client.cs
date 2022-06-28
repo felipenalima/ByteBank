@@ -7,8 +7,8 @@ namespace ByteBank
 {
     public class Client
     {
-        public string name;
-        public string cpf;
-        public string occupation;
+        public string Name { get; set; }
+        public string Cpf { get; set; }
+        public string Occupation { get; set; }
     }
 }
