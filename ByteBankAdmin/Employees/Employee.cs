@@ -10,8 +10,12 @@ namespace ByteBankAdmin.Employees
         public string Name { get; set; }    
         public string Cpf { get; set; }
         public double Salary { get; set; }
+        public Employee()
+        {
+            
+        }
 
-        public double GetBonification()
+        public virtual double GetBonification()
         {
             return Salary*0.1;
         }
