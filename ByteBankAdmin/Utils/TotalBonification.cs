@@ -6,9 +6,9 @@ using ByteBankAdmin.Employees;
 
 namespace ByteBankAdmin.Utils
 {
-    public class BonificationManager
+    public class TotalBonification : IBonificationManager
     {
-        private double totalBonification;
+        public double totalBonification { get; set; }
 
         public void Register(Employee employee)
         {
@@ -17,7 +17,8 @@ namespace ByteBankAdmin.Utils
 
         public double GetBonification()
         {
-            return this.totalBonification;
+            return totalBonification;
         }
+      
     }
 }

@@ -3,10 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ByteBankAdmin.Utils;
 
 namespace ByteBankAdmin.Employees
 {
-    public class Designer : Employee
+    public class Designer : Employee, IBonificationManager
     {  
        public Designer(string cpf) : base(cpf, 3000)
        {

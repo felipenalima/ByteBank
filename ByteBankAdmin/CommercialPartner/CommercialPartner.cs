@@ -3,19 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ByteBankAdmin.Employees;
+using ByteBankAdmin.InternalSystem;
 
-namespace ByteBankAdmin.InternalSystem
+namespace ByteBankAdmin.CommercialPartner
 {
-    public abstract class Authenticable : Employee
+    public class CommercialPartner : IAuthenticable
     {
         public string Password { get; set; }
-        protected Authenticable(string cpf, double salary) : base(cpf, salary)
-        {
-
-        }
         public bool Authenticate(string password)
         {
-            return this.Password == password;
+            return Password == password;
         }
     }
 }

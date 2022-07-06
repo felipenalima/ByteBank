@@ -7,6 +7,8 @@ namespace ByteBankAdmin.Employees
 {
     public abstract class Employee
     {
+        private double totalBonification;
+
         public string Name { get; set; }    
         public string Cpf { get; private set; }
         public double Salary { get; protected set; }

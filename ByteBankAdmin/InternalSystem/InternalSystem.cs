@@ -8,13 +8,13 @@ namespace ByteBankAdmin.InternalSystem
 {
     public class InternalSystem
     {
-        public bool Login(Authenticable employee, string password)
+        public bool Login(IAuthenticable employee, string password)
         {
             bool userAuthenticate = employee.Authenticate(password);
 
             if(userAuthenticate == true)
             {
-                Console.WriteLine("Welcome to the system: " + employee.Name);
+                Console.WriteLine("Welcome to the system");
                 return true;
             }
             else

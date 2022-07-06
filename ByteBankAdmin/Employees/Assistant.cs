@@ -2,10 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ByteBankAdmin.Utils;
 
 namespace ByteBankAdmin.Employees
 {
-    public class Assistant : Employee
+    public class Assistant : Employee, IBonificationManager
     {
         public Assistant(string cpf) : base(cpf, 2000)
         {
