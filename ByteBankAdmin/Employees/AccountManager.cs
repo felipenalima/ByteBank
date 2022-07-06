@@ -2,10 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ByteBankAdmin.InternalSystem;
 
 namespace ByteBankAdmin.Employees
 {
-    public class AccountManager : Employee
+    public class AccountManager : Authenticable
     {
         public AccountManager(string cpf) : base(cpf, 4000)
         {
@@ -20,7 +21,6 @@ namespace ByteBankAdmin.Employees
         public override void SalaryIncrease()
         {
             Salary *= 1.05;
-        }
-        
+        }        
     }
 }

@@ -1,9 +1,11 @@
 ﻿using ByteBankAdmin.Employees;
+using ByteBankAdmin.InternalSystem;
 using ByteBankAdmin.Utils;
 
 Console.WriteLine("Welcome to the ByteBank Admin");
 
-BonificatonCalculate();
+//BonificatonCalculate();
+UserAuthenticate();
 
 void BonificatonCalculate()
 {
@@ -43,4 +45,22 @@ void BonificatonCalculate()
 
 }
 
+void UserAuthenticate()
+{
+    InternalSystem internalSystem = new InternalSystem();
+
+    Director director = new Director("33646");
+    director.Password = "123";
+    director.Name = "Fulano Silva";
+
+    AccountManager accountManager = new AccountManager("33646-X");
+    accountManager.Password = "321";
+    accountManager.Name = "Beltrano Souza";
+
+    internalSystem.Login(director, "123");
+    internalSystem.Login(accountManager, "3211");
+
+}
+
 Console.ReadLine();
+
