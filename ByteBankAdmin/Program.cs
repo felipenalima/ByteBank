@@ -3,25 +3,44 @@ using ByteBankAdmin.Utils;
 
 Console.WriteLine("Welcome to the ByteBank Admin");
 
-Employee employee = new Employee();
-employee.Name = "Felipe Lima";
-employee.Cpf = "123456-XX";
-employee.Salary = 1000;
+BonificatonCalculate();
 
-Director director = new Director();
-director.Name = "Fulano Silva";
-director.Cpf = "123456-XX";
-director.Salary = 2000;
+void BonificatonCalculate()
+{
+    Director director = new Director("123456-XX");
+    director.Name = "Fulano Silva";
 
-BonificationManager bonificationManager = new BonificationManager();
-bonificationManager.Register(employee);
-bonificationManager.Register(director);
+    Designer designer = new Designer("8689748646-XX");
+    designer.Name = "Ciclano Lima";
 
-Console.WriteLine("Bonification is: " +  employee.GetBonification() + " to " + employee.Name);
-Console.WriteLine("Salary with Bonification is: " + (employee.Salary + employee.GetBonification()));
-Console.WriteLine("Bonification is: " +  director.GetBonification() + " to " + director.Name);
-Console.WriteLine("Salary with Bonification is: " + (director.Salary + director.GetBonification()));
+    AccountManager accountManager = new AccountManager("123778746-XX");
+    accountManager.Name = "Beltrano Souza";
 
-Console.WriteLine("Total of Bonifications is: " + bonificationManager.GetBonification());
+    Developer developer = new Developer("1236456-XX");
+    developer.Name = "João Maria";
+
+    Assistant assistant = new Assistant("1236456456-XX");
+    assistant.Name = "Maria João";
+
+    BonificationManager bonificationManager = new BonificationManager();
+    bonificationManager.Register(director);
+    bonificationManager.Register(designer);
+    bonificationManager.Register(accountManager);
+    bonificationManager.Register(developer);
+    bonificationManager.Register(assistant);
+
+    Console.WriteLine("Bonification is: " +  director.GetBonification() + " to " + director.Name);
+    Console.WriteLine("Salary with Bonification is: " + (director.Salary + director.GetBonification()));
+    Console.WriteLine("Bonification is: " +  designer.GetBonification() + " to " + designer.Name);
+    Console.WriteLine("Salary with Bonification is: " + (designer.Salary + designer.GetBonification()));
+    Console.WriteLine("Bonification is: " +  accountManager.GetBonification() + " to " + accountManager.Name);
+    Console.WriteLine("Salary with Bonification is: " + (accountManager.Salary + accountManager.GetBonification()));
+    Console.WriteLine("Bonification is: " +  developer.GetBonification() + " to " + developer.Name);
+    Console.WriteLine("Salary with Bonification is: " + (developer.Salary + developer.GetBonification()));
+    Console.WriteLine("Bonification is: " +  assistant.GetBonification() + " to " + assistant.Name);
+    Console.WriteLine("Salary with Bonification is: " + (assistant.Salary + assistant.GetBonification()));
+    Console.WriteLine("Total of Bonifications is: " + bonificationManager.GetBonification());
+
+}
 
 Console.ReadLine();

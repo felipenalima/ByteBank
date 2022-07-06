@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -5,20 +6,21 @@ using System.Threading.Tasks;
 
 namespace ByteBankAdmin.Employees
 {
-    public class Director : Employee
-    {   
-        public Director(string cpf) : base(cpf, 5000)
-        {
-            
-        }
+    public class Designer : Employee
+    {  
+       public Designer(string cpf) : base(cpf, 3000)
+       {
+        
+       }
+
         public override double GetBonification()
         {
-            return Salary * 0.5;
+            return Salary * 0.17;
         }
 
         public override void SalaryIncrease()
         {
-            this.Salary *= 1.15;
+            Salary *= 1.11;
         }
     }
 }

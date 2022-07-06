@@ -5,19 +5,22 @@ using System.Threading.Tasks;
 
 namespace ByteBankAdmin.Employees
 {
-    public class Employee
+    public abstract class Employee
     {
         public string Name { get; set; }    
-        public string Cpf { get; set; }
-        public double Salary { get; set; }
-        public Employee()
+        public string Cpf { get; private set; }
+        public double Salary { get; protected set; }
+        public static int TotalEmployess { get; private set; }
+        public Employee(string cpf, double salary)
         {
-            
+            this.Cpf = cpf;
+            this.Salary = salary;
+            TotalEmployess++;
         }
 
-        public virtual double GetBonification()
-        {
-            return Salary*0.1;
-        }
+        public abstract double GetBonification();
+   
+        public abstract void SalaryIncrease();
+       
     }
 }

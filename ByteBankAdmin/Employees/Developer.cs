@@ -5,20 +5,22 @@ using System.Threading.Tasks;
 
 namespace ByteBankAdmin.Employees
 {
-    public class Director : Employee
-    {   
-        public Director(string cpf) : base(cpf, 5000)
+    public class Developer : Employee
+    {
+        public Developer(string cpf) : base(cpf, 3000)
         {
             
         }
+
         public override double GetBonification()
         {
-            return Salary * 0.5;
+            return Salary * 0.1;
         }
+           
 
         public override void SalaryIncrease()
         {
-            this.Salary *= 1.15;
+            Salary *= 0.15;
         }
     }
 }
