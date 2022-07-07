@@ -1,3 +1,4 @@
+using System.Xml;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,65 +9,48 @@ namespace ByteBank
     public class CurrentAccount
     {
         //Fields
-        private string _account;
         private double balance;
-        private int _agencyNumber;
-
         //Properties
         public Client Client { get; set; }
         public string AgencyName { get; set; }
-        public string Account 
-        { 
-            get
-            {
-                return _account;
-            }
-            set 
-            {
-                if(value == null)
-                {
-                    return;
-                }
-                
-                _account = value;
-            } 
-        }
-        public int AgencyNumber 
-        { 
-            get
-            {
-                return _agencyNumber;
-            } 
-            set
-            {
-                if(value <= 0)
-                {
-                    return;
-                }
-                _agencyNumber = value;
-            } 
-        }
+        public int Account {get;}
+        public int AgencyNumber {get;}
         public static int TotalAccountsCreated { get; set; }
+        public static double OperationFee { get; private set; }
+        public int CountTransferNotAllowed { get; private set; }
+        public int CountWithdrawNotAllowed { get; set; }
 
         //Method Constructor
-        public CurrentAccount(int agencyNumber, string account)
+        public CurrentAccount(int agencyNumber, int account)
         {
             AgencyNumber = agencyNumber;
             Account = account;
+
+            if(agencyNumber <= 0)
+            {
+                throw new ArgumentException("Agency number cannot be less than zero ", nameof(agencyNumber));
+            }
+            if(account <= 0)
+            {
+                throw new ArgumentException("Account cannot be less than zero ", nameof(account));
+            }
+
             TotalAccountsCreated++;
+            OperationFee = 30 / TotalAccountsCreated;
+            
         }
         //Withdraw method, check valor and balance
         public bool Withdraw(double value)
         {
             if(value < 0)
             {
-                Console.WriteLine("Value can't be less than 0");
-                return false;
+                CountWithdrawNotAllowed++;
+                throw new InsufficientBalanceException("Value can't be less than 0");
             }
             else if (balance < value)
             {
-                Console.WriteLine("Balance less than withdrawal amount");
-                return false;
+                CountWithdrawNotAllowed++;
+                throw new InsufficientBalanceException("Balance less than withdrawal amount");
             }
             else 
             { 
@@ -83,21 +67,22 @@ namespace ByteBank
 
         public bool Transfer(double value, CurrentAccount transferDestiny)
         {
-            if(value < 0)
+            try
             {
-                return false;
+                Withdraw(value);
             }
-            else if(balance < value)
+            catch(InsufficientBalanceException ex)
             {
-                return false; 
+                CountTransferNotAllowed++;
+                throw new FinancialOperationException("Operation not realized", ex);
             }
-            else
-            {
-                balance -= value;
-                transferDestiny.balance += value;
-                return true; 
-            }
+
+            balance -= value;
+            transferDestiny.balance += value;
+            return true; 
+
         }
+
 
         public void SetBalance(double value)
         {
